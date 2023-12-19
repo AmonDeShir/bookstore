@@ -1,0 +1,9 @@
+{
+  "name": "purgal/bookstore",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Bookstore\\": "src/"
+    }
+  }
+}
