@@ -1,15 +1,15 @@
 <?php
 
-namespace Bookstore\Database;
+namespace bookstore;
 
 class Database {
-  private static $host = 'localhost';
-  private static $username = 'root';
-  private static $password = '';
-  private static $db_name = 'bookstore';
-  private static $conn;
+  private $host = 'localhost';
+  private $username = 'root';
+  private $password = '';
+  private $db_name = 'bookstore';
+  private $conn;
 
-  public static function connect() {
+  public function connect() {
     Database::$conn = new mysqli(Database::$host, Database::$username, Database::$password, Database::$db_name);
 
     if (Database::$conn->connect_error) {
@@ -17,11 +17,11 @@ class Database {
     }
   }
 
-  public static function query($sql) {
+  public function query($sql) {
     return Database::$conn->query($sql);
   }
 
-  public static function close() {
+  public function close() {
     Database::$conn->close();
   }
 }
