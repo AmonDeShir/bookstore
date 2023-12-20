@@ -76,8 +76,5 @@ CREATE TABLE `book_copy` (
 );
 
 
-INSERT INTO `user` (`email`, `password`, `role`, `registered`, `last_login`)
-VALUES ('admin@bookshop.pl', 'admin', 'admin', UNIX_TIMESTAMP('2023-12-19'), '');
-
 COMMIT;
 

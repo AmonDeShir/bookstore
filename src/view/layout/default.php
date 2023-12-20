@@ -9,28 +9,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Changa&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <?php
+    use bookstore\App;
+
+    function importJSComponent($folder_path) {
+      $dir = App::$ROOT_DIR . '../public/';
+      $files = glob($dir . $folder_path . '*.c.js');
+      
+      foreach ($files as $file) {
+        $src = str_replace($dir, "/public/", $file);
+        echo '<script type="module" src="' . $src . '"></script>';
+      }
+
+      $subdirectories = glob($folder_path . '*', GLOB_ONLYDIR);
+      
+      foreach ($subdirectories as $subdirectory) {
+        importJSComponent($subdirectory . '/');
+      }
+    }
+    
+    importJSComponent('');
+  ?>
 </head>
 <body>
-  <header class="header">
-    <div class="title">
-      <a class="link--no-style" href="/">
-        <h1 class="title__main">KSIĘGARNIA</h1>
-        <p class="title__text">System zarządzania bazą danych</p>
-      </a>
-    </div>
- 
-    <nav class="navigation">
-      <div class="navigation__max">
-        <a class="navigation__link" href="/structure">Struktura</a><br>
-        <a class="navigation__link" href="/login">Logowanie</a><br>
-        <a class="navigation__link" href="/register">Rejestracja</a><br>
-        <a class="navigation__link" href="/book">Książki<br>
-        <a class="navigation__link" href="/user">Użytkownicy</a><br>
-        <a class="navigation__link" href="/raport">Raport</a><br>
-      </div>
-    </nav>
-  </header>
-  
+  <c-header>
+    <c-logo address="/user"></c-logo>
+    <c-navigation>
+      <c-link href="/structure">Struktura</c-link>
+      <c-link href="/books">Książki</c-link>
+      <c-link href="/users">Użytkownicy</c-link>
+      <c-link href="/raport">Raport</c-link>
+    </c-navigation>
+  </c-header>
+
   <main class="page">
     <span>
       {{ content }}

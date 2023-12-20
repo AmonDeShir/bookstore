@@ -1,0 +1,9 @@
+{
+  "name": "htdocs",
+  "packageManager": "yarn@4.0.2",
+  "type": "module",
+  "dependencies": {
+    "tsc-esm": "^1.0.4",
+    "typescript": "^5.3.3"
+  }
+}
